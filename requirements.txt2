@@ -8,10 +8,8 @@ adobe_consulting_services_commons==1.2.2
 adobe_consulting_services_commons==1.2.4
 aix==1.3
 freebsd==1.1.5.1
-windows==-
 windows_nt==4.0
 fta==9_12_370
-ios==12.3\(2\)ja5
 publisher==-
 communicator==2.0
 macos==-
@@ -40,9 +38,7 @@ aix==6.1.2
 aix==5.2_l
 aix==5.1
 aix==7.2
-hp-ux==-
 aix==5
-netware==-
 publisher==2016
 aix==3.2.5
 aix==7.2.4.0
