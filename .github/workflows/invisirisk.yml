@@ -1,5 +1,4 @@
-name: "Generate and Upload SBOM"
-
+name: invisirisk
 on: 
   workflow_dispatch:
 
