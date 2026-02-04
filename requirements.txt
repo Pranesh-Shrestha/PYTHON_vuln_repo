@@ -1,0 +1,10 @@
+tensorflow
+salt
+pillow
+sunos
+aix
+django
+redis
+itunes
+hp-us
+freebsd
