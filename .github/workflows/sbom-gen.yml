@@ -1,24 +1,45 @@
 name: "Generate and Upload SBOM"
 
 on: 
-  push:
-  pull_request:
   workflow_dispatch:
 
 jobs:
-  generate_sbom:
+  build:
     runs-on: ubuntu-latest
-    name: "SBOM Generation"
     steps:
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{secrets.IR_API_KEY_STAGE}}
+          
       - name: Checkout Repository
         uses: actions/checkout@v4
       
-      - name: Generate SBOM
-        id: sbom_generation
-        uses: codenotary/sbom.sh-create@main
+      - name: Use Python
+        uses: actions/setup-python@v4
         with:
-          scan_type: 'grypefs'
-          target: '.' # Assuming you want to scan the entire repository
+          python-version: "3.13"
 
-      - name: Output SBOM URL
-        run: echo "The SBOM can be found at $SBOM_SHARE_URL"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Cleanup PSE
+        if: always()
+        uses: invisirisk/pse-action@latest
+        with:
+          cleanup: "true"
+
+  gather_analytics:
+    runs-on: ubuntu-latest
+    name: Gather Analytics
+    needs: build
+    if: always()
+    steps:
+      - name: Gather Status
+        uses: invisirisk/pse-action@latest
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{secrets.IR_API_KEY_STAGE}}
+          send_job_status: "true"
+          debug: "true"
