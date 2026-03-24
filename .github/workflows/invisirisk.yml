@@ -1,4 +1,4 @@
-name: invisirisk
+name: invisirisk x dependency tree
 on: 
   workflow_dispatch:
 
@@ -18,11 +18,8 @@ jobs:
       - name: Use Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.13"
-          
-      - name: upgrade pip
-        run: pip install --upgrade pip
-        
+          python-version: "3.11"
+                
       - name: Install dependencies
         run: pip install -r requirements.txt
 
