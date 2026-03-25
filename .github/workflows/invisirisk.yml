@@ -12,16 +12,16 @@ jobs:
           api_url: "https://app.stage.invisirisk.com"
           app_token: ${{secrets.IR_API_KEY_STAGE}}
           
-     # - name: Checkout Repository
-      #   uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       
-      # - name: Use Python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: "3.8"
+      - name: Use Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
                 
-      # - name: Install dependencies
-      #   run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Cleanup PSE
         if: always()
